@@ -16,7 +16,6 @@
         ],
         "Description": "Weather forecast runner",
         "Icon": "org.kde.kweather",
-        "Id": "krunner_kweather",
         "Name": "Weather",
         "Version": "1.0"
     },
