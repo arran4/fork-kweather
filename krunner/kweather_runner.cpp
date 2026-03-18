@@ -77,9 +77,9 @@ void KWeatherRunner::match(KRunner::RunnerContext &context)
 
         if (reply->error() == KWeatherCore::LocationQueryReply::NoError) {
             auto results = reply->result();
-            if (!results.isEmpty()) {
+            if (!results.empty()) {
                 // Fetch for the top result
-                const auto &res = results.first();
+                const auto &res = results.front();
                 fetchAndAddWeather(context, res.latitude(), res.longitude(), res.toponymName());
             }
         }
@@ -100,16 +100,16 @@ void KWeatherRunner::fetchAndAddWeather(KRunner::RunnerContext &context, double 
     KWeatherCore::WeatherForecast forecast = pending->value();
     delete pending;
 
-    if (forecast.dailyWeatherForecast().isEmpty()) {
+    if (forecast.dailyWeatherForecast().empty()) {
         return;
     }
 
-    auto daily = forecast.dailyWeatherForecast().first();
-    if (daily.hourlyWeatherForecast().isEmpty()) {
+    auto daily = forecast.dailyWeatherForecast().front();
+    if (daily.hourlyWeatherForecast().empty()) {
         return;
     }
 
-    auto current = daily.hourlyWeatherForecast().first();
+    auto current = daily.hourlyWeatherForecast().front();
 
     int temp = std::round(current.temperature());
     QString description = current.weatherDescription();
