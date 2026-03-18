@@ -8,6 +8,10 @@
             {
                 "Email": "espidev@gmail.com",
                 "Name": "Devin Lin"
+            },
+            {
+                "Email": "kde@arran4.com",
+                "Name": "Arran Ubels"
             }
         ],
         "Description": "Weather forecast runner",
