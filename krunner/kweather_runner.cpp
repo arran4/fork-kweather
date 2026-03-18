@@ -115,8 +115,8 @@ void KWeatherRunner::fetchAndAddWeather(KRunner::RunnerContext &context, double 
     QString description = current.weatherDescription();
     QString icon = current.weatherIcon();
 
-    int maxTemp = std::round(daily.maxTemperature());
-    int minTemp = std::round(daily.minTemperature());
+    int maxTemp = std::round(daily.maxTemp());
+    int minTemp = std::round(daily.minTemp());
 
     KRunner::QueryMatch match(this);
     match.setId(QStringLiteral("kweather_") + locationName);
