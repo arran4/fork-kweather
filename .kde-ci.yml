@@ -8,7 +8,6 @@ Dependencies:
     'frameworks/kcoreaddons': '@latest-kf6'
     'frameworks/kconfig': '@latest-kf6'
     'frameworks/ki18n': '@latest-kf6'
-    'frameworks/krunner': '@latest-kf6'
     'frameworks/kirigami': '@latest-kf6'
     'frameworks/knotifications': '@latest-kf6'
     'libraries/kirigami-addons': '@latest-kf6'
@@ -16,6 +15,7 @@ Dependencies:
 
  - 'on': ['Linux', 'FreeBSD']
    'require':
+    'frameworks/krunner': '@latest-kf6'
     'plasma/libplasma': '@latest-kf6'
     'frameworks/kcrash': '@latest-kf6'
 
