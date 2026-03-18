@@ -30,24 +30,24 @@ KWeatherRunner::~KWeatherRunner() = default;
 
 void KWeatherRunner::match(KRunner::RunnerContext &context)
 {
-    QString query = context.query();
+    QString query = context.query().trimmed();
     QString cmd = i18nc("Command to get weather", "weather");
-
-    // Check if it starts with the localized command or fallback to English
-    if (!query.startsWith(cmd, Qt::CaseInsensitive) && !query.startsWith(QLatin1String("weather"), Qt::CaseInsensitive)) {
-        return;
-    }
+    QString engCmd = QStringLiteral("weather");
 
     QString locationStr;
-    if (query.startsWith(cmd, Qt::CaseInsensitive)) {
-        locationStr = query.mid(cmd.length()).trimmed();
+    if (query.compare(cmd, Qt::CaseInsensitive) == 0 || query.compare(engCmd, Qt::CaseInsensitive) == 0) {
+        locationStr = QString();
+    } else if (query.startsWith(cmd + QLatin1Char(' '), Qt::CaseInsensitive)) {
+        locationStr = query.mid(cmd.length() + 1).trimmed();
+    } else if (query.startsWith(engCmd + QLatin1Char(' '), Qt::CaseInsensitive)) {
+        locationStr = query.mid(engCmd.length() + 1).trimmed();
     } else {
-        locationStr = query.mid(7).trimmed(); // 7 is length of "weather"
+        return; // Does not match exactly "weather" or "weather <location>"
     }
 
     if (locationStr.isEmpty()) {
         // Look up saved locations from KWeather settings
-        KSharedConfigPtr config = KSharedConfig::openConfig(QStringLiteral("kweatherrc"));
+        KSharedConfigPtr config = KSharedConfig::openConfig(QStringLiteral("kweather/kweatherrc"));
         KConfigGroup locationsGroup = config->group(QStringLiteral("WeatherLocations"));
         QStringList groups = locationsGroup.groupList();
 
