@@ -123,6 +123,8 @@ void KWeatherRunner::fetchAndAddWeather(KRunner::RunnerContext &context, double 
     match.setText(i18nc("Weather forecast: %1 is temperature, %2 is description, %3 is location", "%1°C - %2 in %3", temp, description, locationName));
     match.setSubtext(i18nc("Weather forecast subtext: %1 is high temp, %2 is low temp", "High: %1°C Low: %2°C", maxTemp, minTemp));
     match.setIconName(icon);
+    match.setRelevance(1.0);
+    match.setCategoryRelevance(KRunner::QueryMatch::CategoryRelevance::Highest);
 
     // Store coordinates to use in run() if needed, though we just open kweather right now
     match.setData(QVariantList{lat, lon});
