@@ -4,6 +4,10 @@
             {
                 "Email": "hanyoung@protonmail.com",
                 "Name": "Han Young"
+            },
+            {
+                "Email": "espidev@gmail.com",
+                "Name": "Devin Lin"
             }
         ],
         "Description": "Weather forecast runner",
