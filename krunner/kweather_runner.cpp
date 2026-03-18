@@ -130,8 +130,9 @@ void KWeatherRunner::fetchAndAddWeather(KRunner::RunnerContext &context, double 
     context.addMatch(match);
 }
 
-void KWeatherRunner::run(const KRunner::QueryMatch &match)
+void KWeatherRunner::run(const KRunner::RunnerContext &context, const KRunner::QueryMatch &match)
 {
+    Q_UNUSED(context);
     Q_UNUSED(match);
 
     // KWeather does not currently support CLI arguments for specific locations

@@ -16,7 +16,7 @@ public:
     ~KWeatherRunner() override;
 
     void match(KRunner::RunnerContext &context) override;
-    void run(const KRunner::QueryMatch &match) override;
+    void run(const KRunner::RunnerContext &context, const KRunner::QueryMatch &match) override;
 
 private:
     void fetchAndAddWeather(KRunner::RunnerContext &context, double lat, double lon, const QString &locationName);
