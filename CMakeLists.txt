@@ -72,7 +72,6 @@ find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     I18n
     CoreAddons
     Notifications
-    Runner
 )
 find_package(KWeatherCore 0.8.0 REQUIRED)
 
@@ -82,7 +81,7 @@ if (ANDROID)
     find_package(OpenSSL REQUIRED)
 else ()
     find_package(Qt6 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Widgets)
-    find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS Crash)
+    find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS Crash Runner)
 endif()
 
 if (NOT ANDROID AND BUILD_PLASMOID)
