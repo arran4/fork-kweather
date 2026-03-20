@@ -20,22 +20,22 @@ namespace KWeather
 {
 static const QString WEATHER_LOCATIONS_CFG_GROUP = QStringLiteral("WeatherLocations");
 
-static bool isCelsius(const QString &unit)
+inline bool isCelsius(const QString &unit)
 {
     if (unit == QLatin1String("Use System Default")) {
         return (QLocale().measurementSystem() == QLocale::MetricSystem);
     }
     return unit == QLatin1String("Celsius");
-};
+}
 
-static double convertTemp(double temp, const QString &unit)
+inline double convertTemp(double temp, const QString &unit)
 {
     if (KWeather::isCelsius(unit)) {
         return temp;
     } else {
         return temp * 1.8 + 32;
     }
-};
+}
 
 enum class WindDirection {
     N,

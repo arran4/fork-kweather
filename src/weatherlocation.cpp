@@ -43,7 +43,7 @@ WeatherLocation::WeatherLocation(QString locationId,
 
     connect(this, &WeatherLocation::selectedDayChanged, this, [this] {
         m_hourForecasts.clear();
-        if (!m_forecast.dailyWeatherForecast().empty() && m_forecast.dailyWeatherForecast().size() > m_selectedDay && m_selectedDay >= 0) {
+        if (!m_forecast.dailyWeatherForecast().empty() && m_selectedDay >= 0 && m_forecast.dailyWeatherForecast().size() > static_cast<size_t>(m_selectedDay)) {
             const auto hourForecasts = m_forecast.dailyWeatherForecast()[m_selectedDay].hourlyWeatherForecast();
             for (const KWeatherCore::HourlyWeatherForecast &hour : hourForecasts) {
                 m_hourForecasts << hour;
@@ -243,7 +243,7 @@ void WeatherLocation::updateData(KWeatherCore::WeatherForecast forecasts)
     Q_EMIT lastUpdatedChanged();
 
     m_hourForecasts.clear();
-    if (!m_forecast.dailyWeatherForecast().empty() && m_forecast.dailyWeatherForecast().size() > m_selectedDay) {
+    if (!m_forecast.dailyWeatherForecast().empty() && m_selectedDay >= 0 && m_forecast.dailyWeatherForecast().size() > static_cast<size_t>(m_selectedDay)) {
         const auto hourForecasts = m_forecast.dailyWeatherForecast()[m_selectedDay].hourlyWeatherForecast();
         for (const KWeatherCore::HourlyWeatherForecast &hour : hourForecasts) {
             m_hourForecasts << hour;
