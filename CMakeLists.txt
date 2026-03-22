@@ -72,6 +72,7 @@ find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     I18n
     CoreAddons
     Notifications
+    Runner
 )
 find_package(KWeatherCore 0.8.0 REQUIRED)
 
@@ -91,6 +92,9 @@ endif()
 ecm_find_qmlmodule(org.kde.kholidays 1.0)
 add_definitions(-DQT_NO_CONTEXTLESS_CONNECT)
 add_subdirectory(src)
+if (NOT ANDROID)
+    add_subdirectory(krunner)
+endif()
 
 ki18n_install(po)
 
